@@ -60,6 +60,6 @@ UserSchema.plugin(passportLocalMongoose); //Importing built in auth methods into
 
 module.exports = mongoose.model("User", UserSchema);
 ```
+```
+Made By: Aman Saxena
 
-
-The website has been hosted on heroku https://quiet-atoll-30697.herokuapp.com/.
