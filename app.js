@@ -1,0 +1,56 @@
+var express = require('express');
+var app = express();
+var ejs = require('ejs');
+var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+var Event = require('./models/event');
+var Comment = require('./models/comment');
+var methodOverride = require('method-override');
+var passport = require('passport');
+var LocalStrategy = require('passport-local');
+var User = require('./models/user');
+
+//Requiring the route files
+var commentRoutes = require('./routes/comments');
+var eventRoutes = require('./routes/events');
+var indexRoutes = require('./routes/index');
+
+// seedDB(); // Seed the db
+// mongoose.connect('mongodb://localhost/eventdb');
+const db='mongodb://aman:amansaxena@cluster0-shard-00-00-5cozt.mongodb.net:27017,cluster0-shard-00-01-5cozt.mongodb.net:27017,cluster0-shard-00-02-5cozt.mongodb.net:27017/event?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority'
+mongoose.connect(db,{useNewUrlParser:true})
+.then(()=>console.log('MongoDB ONLINE'))
+.catch(err=>console.log(err))
+app.set('view engine', 'ejs');
+app.use(express.static(__dirname + '/public'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(methodOverride('_method'));
+
+
+//Passport config
+app.use(require('express-session')({
+  secret: 'Passcode!!!',
+  resave: false,
+  saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+//Middleware for passing currentUser to all templates
+app.use(function(req, res, next){
+  res.locals.currentUser = req.user;
+  next();
+});
+
+//Use the requrired route files
+app.use(indexRoutes);
+app.use(commentRoutes);
+app.use(eventRoutes);
+
+app.listen(process.env.PORT || 3000, process.env.IP, function(){
+  console.log("Server Started...");
+});

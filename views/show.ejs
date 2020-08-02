@@ -1,0 +1,37 @@
+<% include ./partials/header %>
+
+<h3 class="display-4 text-center">Event Details</h3>
+<center>
+<div class="card mb-3 " style="max-width: 540px; margin-top: 50px;">
+  <div class="row no-gutters">
+    <div class="col-md-4" style="border: solid #444 0.5px;">
+      <h3 style="margin-top: 100px;"><%= event.title %></h3>
+    </div>
+    <div class="col-md-8 bg-dark text-white">
+      <div class="card-body">
+        <p class="card-text">Date : <span><%= event.date %></span></p>
+        <p class="card-text">Organizer : <span><%= event.organiser %></span></p>
+        <p class="card-text">Location : <span><%= event.location %></span></p>
+        <p class="card-text">Description : <span><%= event.description %></span></p>
+        <p class="card-text">Price : <span><%= event.ticket_price %></span></p>
+    
+      </div>
+    </div>
+  </div>
+</div>
+<a href="/events/<%= event._id %>/edit"><button  style="width:150px; position: absolute ; border: none;" class="btn btn-secondary bg-warning " type="button" name="button">EDIT</button></a>
+<form class="" action="/events/<%= event._id%>?_method=delete" method="post">
+  <button  class="btn btn-secondary bg-danger" style="width: 150px; margin-right: 170px; border: none;" type="submit" name="button">DELETE</button>
+</form>
+</center>
+
+<!-- <h3>Comments</h3>
+<a href="/events/<%= event._id %>/comments/new"><button type="button" name="button">Add new comment</button> </a>
+<ul>
+  <% event.comments.forEach(function(comment){ %>
+    <li><strong><%= comment.author.username %>: </strong><%= comment.text %></li>
+  <% }) %>
+</ul> -->
+
+<% include ./partials/footer %>
+

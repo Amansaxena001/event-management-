@@ -1,0 +1,57 @@
+<% include ./partials/header %>
+
+<div class="">
+<h2 class="display-4 text-center">Add new event:</h2>
+<!-- <form class="" action="/events" method="post">
+  <label for="title">Title:</label>
+  <input type="text" name="title" value="">
+  <br>
+  <label for="date">Date:</label>
+  <input type="text" name="date" value="">
+  <br>
+  <label for="organiser">Organiser:</label>
+  <input type="text" name="organiser" value="">
+  <br>
+  <label for="location">Location:</label>
+  <input type="text" name="location" value="">
+  <br>
+  <label for="description">Description:</label>
+  <input type="text" name="description" value="">
+  <br>
+  <label for="ticket_price">Ticket Price:($)</label>
+  <input type="text" name="ticket_price" value="">
+  <br>
+  <input type="submit" value="submit">
+</form>
+</div> -->
+<form class="text-center col-md-6 "style="margin-left: 350px;margin-top:30px" action="/events" method="post">
+  <div class="jumbotron" >
+  <div class="form-group ">
+    <label for="exampleInputEmail1">Title</label>
+    <input type="text" class="form-control" name="title" aria-describedby="emailHelp">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Date</label>
+    <input type="date" class="form-control" name="date" aria-describedby="emailHelp">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Organiser</label>
+    <input type="text" class="form-control" name="organizer" aria-describedby="emailHelp">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Location</label>
+    <input type="text" class="form-control" name="location" aria-describedby="emailHelp">
+  </div> <div class="form-group">
+    <label for="exampleInputEmail1">Description</label>
+    <input type="text" class="form-control" name="description" aria-describedby="emailHelp">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Price:(₹)</label>
+    <input type="text" class="form-control" name="ticket_price" aria-describedby="emailHelp">
+  </div>
+  <button type="submit" class="btn btn-primary btn-lg btn-block">Create</button>
+</div>
+
+</form>
+
+<% include ./partials/footer %>
